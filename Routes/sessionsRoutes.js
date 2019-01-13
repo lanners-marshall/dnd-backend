@@ -5,7 +5,8 @@ const knex = require('knex')
 const dbConfig = require('../knexfile')
 const db = knex(dbConfig.development)
 
-const secret = require('./keys').jwtKey;
+const jwt = process.env.JWT
+const secret = process.env.SECRET
 const protects = require('./middleWear.js');
 
 // -----Create-----

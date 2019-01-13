@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const knex = require('knex')
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const secret = require('./keys').jwtKey;
+const jwt = process.env.JWT
+const secret = process.env.SECRET
 
 const dbConfig = require('../knexfile')
 const db = knex(dbConfig.development)
 
-const id = require('./keys').id;
+const id =  process.env.ID;
 const protects = require('./middleWear.js');
 
 function generateToken(user){

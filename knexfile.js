@@ -12,4 +12,13 @@ module.exports = {
       directory: './db/seeds'
     }
   },
+  production: {
+    client: 'postgresql',
+    connection: {
+      database: 'my_db',
+      user: process.env.USER,
+      password: process.env.PASSWORD,
+      DATABASE_URL: process.env.DATABASE_URL,
+    }
+  }
 };
