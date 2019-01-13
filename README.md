@@ -112,7 +112,7 @@ CREATE
 post /encounters
 
 this create a new encounter for the session includes encounter_name, monsters.
-Mosters will have to be send in as a string with JSON.stringify() then later turned into an object with JSON.parse() to be displayed in the view
+Mosters will have to be sent in as a string with JSON.stringify() then later turned into an object with JSON.parse() to be displayed in the view
 
 
 READ
@@ -126,7 +126,7 @@ example response:
         "id": 8,
         "encounter_name": "fight 3 city of fear",
         "session_id": 8,
-        "monsters": '{name: "big monster", xp: 2000 }'
+        "monsters": '[{name: "big monster", xp: 2000 }, {name: "small monster", xp: '200'}]'
     }
 ]
 ```
