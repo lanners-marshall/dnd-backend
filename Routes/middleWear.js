@@ -1,6 +1,6 @@
-const jwt = process.env.JWT
-const secret = process.env.SECRET
-
+const jwt = require('jsonwebtoken')
+require('custom-env').env('staging')
+const secret = process.env.DB_PASS
 
 function protects(req, res, next){
 	const token = req.headers.authorization

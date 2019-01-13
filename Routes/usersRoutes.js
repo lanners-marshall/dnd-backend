@@ -2,13 +2,15 @@ const express = require('express');
 const router = express.Router();
 const knex = require('knex')
 const bcrypt = require('bcryptjs')
-const jwt = process.env.JWT
-const secret = process.env.SECRET
+const jwt = require('jsonwebtoken')
+require('custom-env').env('staging')
+const secret = process.env.DB_PASS
+const jwt_id = process.env.DB_HOST
+const environment = process.env.NODE_ENV || 'development'
 
-const dbConfig = require('../knexfile')
-const db = knex(dbConfig.development)
+const dbConfig = require('../knexfile.js')[environment]
+const db = knex(dbConfig)
 
-const id =  process.env.ID;
 const protects = require('./middleWear.js');
 
 function generateToken(user){
@@ -17,16 +19,17 @@ function generateToken(user){
 	};
 	const options = {
 		expiresIn: '4h',
-		jwtid: id,
+		jwtid: jwt_id,
 	}
 	return jwt.sign(payload, secret, options)
 }
+
 
 // -----Create-----
 // create a new user
 router.post('/register', (req, res) => {
 	const creds = req.body
-	
+	console.log(secret)
 	const hash = bcrypt.hashSync(creds.password, 13);
 	creds.password = hash;
 

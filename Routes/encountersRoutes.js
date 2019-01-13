@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const knex = require('knex')
 
-const dbConfig = require('../knexfile')
-const db = knex(dbConfig.development)
+const environment = process.env.NODE_ENV || 'development'
 
-const jwt = process.env.JWT
-const secret = process.env.SECRET
+const dbConfig = require('../knexfile.js')[environment]
+const db = knex(dbConfig)
+
 const protects = require('./middleWear.js');
 
 
