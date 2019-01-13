@@ -37,6 +37,9 @@ router.post('/register', (req, res) => {
 			console.log(`ids: ${ids}`)
 			console.log(`ids[0]: ${ids[0]}`)
 			const id = ids[0]
+			for (let i in ids){
+				console.log(`info: ${ids[i]}`)
+			}
 			db('users') 
 				.where({id})
 				.first()
