@@ -1,13 +1,19 @@
 # Instructions
 
-yarn re
 
-on terminal will run knex migrate:rollback && knex migrate:latest && knex seed:run
+```console
+yarn re
+```
+
+on terminal will run 
+
+```console
+knex migrate:rollback && knex migrate:latest && knex seed:run
+```
+
 to get you all set up
 
-```sh
-Crud for users
-```
+**Crud for users**
 
 CREATE
 post /users/register
@@ -59,9 +65,7 @@ delete /users/:id
 
 this will delete the user, the users's sessions, and the users's sessions's encounters
 
-```sh
-Crud for sessions
-```
+**Crud for sessions**
 
 CREATE
 post /sessions
@@ -102,9 +106,7 @@ delete /sessions/:id
 
 this will delete the session and all encounters for the session
 
-```sh
-Crud for encounters
-```
+**Crud for encounters**
 
 CREATE
 post /encounters
