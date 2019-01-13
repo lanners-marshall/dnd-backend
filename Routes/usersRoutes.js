@@ -28,15 +28,13 @@ function generateToken(user){
 // -----Create-----
 // create a new user
 router.post('/register', (req, res) => {
-	const creds = req.body
-	console.log(secret)
-	const hash = bcrypt.hashSync(creds.password, 13);
-	creds.password = hash;
-
+	let  {username, email, password} = req.body
+	password = bcrypt.hashSync(password, 13)
+	console.log({username, email, password})
 	db('users')
-		.insert(creds)
+		.insert({username, email, password})
 		.then(ids => {
-			//console.log(ids)
+			console.log(ids)
 			const id = ids[0]
 			db('users') 
 				.where({id})
