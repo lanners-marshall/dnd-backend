@@ -6,8 +6,7 @@
   "scripts": {
     "test": "(knex migrate:rollback && knex migrate:latest && knex seed:run) && NODE_ENV=test jest --verbose --watch",
     "start": "nodemon server.js",
-    "re": "knex migrate:rollback && knex migrate:latest && knex seed:run",
-    "start": "node ./bin/www"
+    "re": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "keywords": [],
   "author": "Marshall Lanners",
