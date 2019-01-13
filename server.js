@@ -23,6 +23,6 @@ server.use('/users', userRoutes)
 server.use('/sessions', sessionsRoutes)
 server.use('/encounters', encountersRoutes)
 
-server.set('port', process.env.PORT || 80)
+server.listen(process.env.PORT || 5555)
 
 module.exports = server;
