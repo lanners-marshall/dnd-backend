@@ -34,7 +34,8 @@ router.post('/register', (req, res) => {
 	db('users')
 		.insert({username, email, password})
 		.then(ids => {
-			console.log(ids)
+			console.log(`ids: ${ids}`)
+			console.log(`ids[0]: ${ids[0]}`)
 			const id = ids[0]
 			db('users') 
 				.where({id})
