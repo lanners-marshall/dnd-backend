@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "(knex migrate:rollback && knex migrate:latest && knex seed:run) && NODE_ENV=test jest --verbose --watch",
+    "start": "nodemon server.js",
+    "re": "knex migrate:rollback && knex migrate:latest && knex seed:run"
+  },
+  "keywords": [],
+  "author": "Marshall Lanners",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.14.0",
+    "jsonwebtoken": "^8.3.0",
+    "knex": "^0.15.2",
+    "morgan": "^1.9.1",
+    "renderer": "^0.1.5",
+    "sqlite3": "^4.0.3"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.2",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "jest": "^23.6.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.5",
+    "supertest": "^3.3.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": ["/node_modules/", "<rootDir>/notes/src/__tests__/"]
+  }
+}
