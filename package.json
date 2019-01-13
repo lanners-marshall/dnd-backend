@@ -19,6 +19,7 @@
     "jsonwebtoken": "^8.3.0",
     "knex": "^0.15.2",
     "morgan": "^1.9.1",
+    "nodemon": "^1.18.5",
     "pg": "^7.8.0",
     "renderer": "^0.1.5",
     "sqlite3": "^4.0.3"
@@ -29,7 +30,6 @@
     "enzyme-adapter-react-16": "^1.6.0",
     "jest": "^23.6.0",
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.5",
     "supertest": "^3.3.0"
   },
   "jest": {
