@@ -5,6 +5,8 @@ const cors = require('cors')
 const morgan = require('morgan')
 const knex = require('knex')
 
+const environment = process.env.NODE_ENV || 'development';
+
 const dbConfig = require('./knexfile')
 const db = knex(dbConfig.development)
 
@@ -21,8 +23,6 @@ server.use('/users', userRoutes)
 server.use('/sessions', sessionsRoutes)
 server.use('/encounters', encountersRoutes)
 
-if (process.env.NODE_ENV !== 'test') {
-  server.listen(5555, () => console.log('running on port 5555'));
-}
+server.set('port', process.env.PORT || 5555)
 
 module.exports = server;

@@ -14,11 +14,13 @@ module.exports = {
   },
   production: {
     client: 'pg',
-    connection: {
-      database: 'my_db',
-      user: process.env.USER,
-      password: process.env.PASSWORD,
-      DATABASE_URL: process.env.DATABASE_URL,
-    }
+    connection: process.env.DATABASE_URL + `?ssl=true`,
+    migrations: {
+      directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/seeds'
+    },
+    useNullAsDefault: true
   }
 };
