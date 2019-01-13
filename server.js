@@ -23,6 +23,9 @@ server.use('/users', userRoutes)
 server.use('/sessions', sessionsRoutes)
 server.use('/encounters', encountersRoutes)
 
-server.listen(process.env.PORT || 5555)
+let app = server.listen(process.env.PORT || 5000, function () {
+  let port = app.address().port;
+  console.log("Express is working on port " + port);
+});
 
 module.exports = server;
