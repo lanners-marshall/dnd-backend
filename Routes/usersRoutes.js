@@ -30,22 +30,15 @@ function generateToken(user){
 router.post('/register', (req, res) => {
 	let  {username, email, password} = req.body
 	password = bcrypt.hashSync(password, 13)
-	console.log({username, email, password})
 	db('users')
 		.insert({username, email, password})
 		.then(ids => {
-			console.log(`ids: ${ids}`)
-			console.log(`ids[0]: ${ids[0]}`)
-			const id = ids[0]
-			for (let i in ids){
-				console.log(`info: ${ids[i]}`)
-			}
 			db('users') 
-				.where({id})
+				.where({username, email, password})
 				.first()
 				.then(user => {
 					const token = generateToken(user);
-					res.status(200).json({token, id: user.id})
+					return res.status(200).json({token, id: user.id})
 				})
 				.catch(err => {
 					console.log(err)
