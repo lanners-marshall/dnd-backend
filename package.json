@@ -8,7 +8,7 @@
     "start": "NODE_ENV=production node server.js",
     "startd": "NODE_ENV=development node server.js",
     "re": "knex migrate:rollback && knex migrate:latest && knex seed:run",
-    "he": "heroku run knex migrate:rollback && heroku run knex migrate:latest"
+    "he": "heroku run knex migrate:rollback && heroku run knex migrate:latest && heroku run knex seed:run"
   },
   "keywords": [],
   "author": "Marshall Lanners",
