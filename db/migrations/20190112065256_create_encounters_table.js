@@ -1,16 +1,13 @@
-let uuid = require('uuid-v4')
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('encounters', function(tbl) {
-
-  	tbl.uuid('id').primary().unsigned().notNullable().defaultTo(uuid())
-
-  	tbl
-  		.string('encounter_name', 128)
-  		.notNullable()
+    tbl.increments()
 
     tbl
-      .uuid('session_id')
+      .string('encounter_name', 128)
+      .notNullable()
+
+    tbl
+      .integer('session_id')
       .unsigned()
       .notNullable()
       .references('id')
