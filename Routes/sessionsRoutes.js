@@ -90,15 +90,16 @@ router.delete('/:id', (req, res) => {
 		if (response === 0){
 			res.status(404).json({msg: 'no session to delete'})
 		}
-		db('encounters')
-		.where('session_id', id)
-		.del()
-		.then(response => {
-			if (response === 0){
-				return res.status(404).json({msg: 'no encounters to delete for session'})
-			} 
-			res.status(200).json(response)
-		})
+		return res.status(200).json(response)
+		// db('encounters')
+		// .where('session_id', id)
+		// .del()
+		// .then(response => {
+		// 	if (response === 0){
+		// 		return res.status(404).json({msg: 'no encounters to delete for session'})
+		// 	} 
+		// 	res.status(200).json(response)
+		// })
 	})
 })
 

@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('encounters', function(tbl) {
-  	tbl.increments();
+  	tbl.increments()
 
   	tbl
   		.string('encounter_name', 128)
@@ -8,10 +8,11 @@ exports.up = function(knex, Promise) {
 
   	tbl
   		.integer('session_id')
-  		.unsigned()
-  		.notNullable()
+      .unsigned()
+      .notNullable()
   		.references('id')
   		.inTable('sessions')
+      .onDelete('CASCADE')
 
     tbl
       .string('monsters')

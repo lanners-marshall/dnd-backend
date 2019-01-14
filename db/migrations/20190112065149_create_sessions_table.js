@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('sessions', function(tbl) {
-  	tbl.increments();
+  	tbl.increments()
 
   	tbl
   		.string('session_name', 128)
@@ -12,6 +12,7 @@ exports.up = function(knex, Promise) {
   		.notNullable()
   		.references('id')
   		.inTable('users')
+      .onDelete('CASCADE')
 
   })
 };

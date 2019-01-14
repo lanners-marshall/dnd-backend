@@ -49,7 +49,6 @@ router.post('/register', (req, res) => {
 			console.log(err);
 			res.status(500).json({msg: "there was an error registering user"})
 		})
-	
 })
 
 // -----Create-----
@@ -120,10 +119,7 @@ router.put('/:id', (req, res) => {
 	})
 })
 
-// -----Delete-----
-// delete a user, the users's sessions, and the users's encounters
 router.delete('/:id', (req, res) => {
-	//delete the user
 	const { id } = req.params;
 	db('users')
 	.where({id})
@@ -132,47 +128,70 @@ router.delete('/:id', (req, res) => {
 		if (response === 0){
 			return res.status(404).json({msg: 'no user to delete'})
 		}
-		if (response === 1){
-			//see if there is any sessions to delete
-			db('sessions')
-			.where('user_id', id)
-			.then(response => {
-				//no sessions from the user to delete end function
-				if (response.length === 0){
-					res.status(200).json({msg: 'user had no sessions to delete'})
-				}
-				//store session ids to later delete encounters
-				let session_ids = []
-				for (let i in response){
-					session_ids.push(response[i].id)
-				}
-
-				console.log(response)
-				console.log(session_ids)
-
-				//delete all of the users sessions
-				db('sessions')
-				.where('user_id', id)
-				.del()
-				.then(response => {
-					console.log(response)
-					
-					//loop to delete all of the users encounters
-					for (let j in session_ids ){
-						db('encounters')
-						.where('session_id', session_ids[j])
-						.del()
-						.then(response => {
-							console.log(response)
-						})
-					}
-					//finaly finished clearing out 
-					//the users sessions and encounters from the database
-					res.status(200).json({msg: 'all clear deleting everying'})
-				})
-			})
-		}
+	})
+	.then(() => {
+		db('sessions')
+		.where({user_id: id})
+		.del()
+		.then(response => {
+			return res.status(200).json(response)
+		})
 	})
 })
+
+// -----Delete-----
+// delete a user, the users's sessions, and the users's encounters
+// router.delete('/:id', (req, res) => {
+// 	//delete the user
+// 	const { id } = req.params;
+// 	db('users')
+// 	.where({id})
+// 	.del()
+// 	.then(response => {
+// 		if (response === 0){
+// 			return res.status(404).json({msg: 'no user to delete'})
+// 		}
+// 		if (response === 1){
+// 			//see if there is any sessions to delete
+// 			db('sessions')
+// 			.where('user_id', id)
+// 			.then(response => {
+// 				//no sessions from the user to delete end function
+// 				if (response.length === 0){
+// 					res.status(200).json({msg: 'user had no sessions to delete'})
+// 				}
+// 				//store session ids to later delete encounters
+// 				let session_ids = []
+// 				for (let i in response){
+// 					session_ids.push(response[i].id)
+// 				}
+
+// 				console.log(response)
+// 				console.log(session_ids)
+
+// 				//delete all of the users sessions
+// 				db('sessions')
+// 				.where('user_id', id)
+// 				.del()
+// 				.then(response => {
+// 					console.log(response)
+					
+// 					//loop to delete all of the users encounters
+// 					for (let j in session_ids ){
+// 						db('encounters')
+// 						.where('session_id', session_ids[j])
+// 						.del()
+// 						.then(response => {
+// 							console.log(response)
+// 						})
+// 					}
+// 					//finaly finished clearing out 
+// 					//the users sessions and encounters from the database
+// 					res.status(200).json({msg: 'all clear deleting everying'})
+// 				})
+// 			})
+// 		}
+// 	})
+// })
 
 module.exports = router;
