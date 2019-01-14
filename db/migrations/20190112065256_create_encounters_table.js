@@ -9,12 +9,12 @@ exports.up = function(knex, Promise) {
   		.string('encounter_name', 128)
   		.notNullable()
 
-  	tbl
-  		.uuid('session_id')
+    tbl
+      .uuid('session_id')
       .unsigned()
       .notNullable()
-  		.references('id')
-  		.inTable('sessions')
+      .references('id')
+      .inTable('sessions')
       .onDelete('CASCADE')
 
     tbl
