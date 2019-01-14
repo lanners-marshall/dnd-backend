@@ -91,15 +91,6 @@ router.delete('/:id', (req, res) => {
 			res.status(404).json({msg: 'no session to delete'})
 		}
 		return res.status(200).json(response)
-		// db('encounters')
-		// .where('session_id', id)
-		// .del()
-		// .then(response => {
-		// 	if (response === 0){
-		// 		return res.status(404).json({msg: 'no encounters to delete for session'})
-		// 	} 
-		// 	res.status(200).json(response)
-		// })
 	})
 })
 
