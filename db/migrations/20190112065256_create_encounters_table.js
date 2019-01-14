@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
   		.notNullable()
 
   	tbl
-  		.string('session_id')
+  		.uuid('session_id')
       .unsigned()
       .notNullable()
   		.references('id')

@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
   		.notNullable()
 
   	tbl
-  		.string('user_id')
+  		.uuid('user_id')
   		.unsigned()
   		.notNullable()
   		.references('id')
