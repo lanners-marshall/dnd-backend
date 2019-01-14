@@ -1,5 +1,7 @@
 let uuid = require('uuid-v4')
 
+let uuid = require('uuid-v4')
+
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('encounters', function(tbl) {
 
