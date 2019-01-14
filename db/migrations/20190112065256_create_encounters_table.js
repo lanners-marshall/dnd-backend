@@ -1,13 +1,13 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('encounters', function(tbl) {
-  	tbl.increments()
+  	tbl.uuid('id').notNullable().primary()
 
   	tbl
   		.string('encounter_name', 128)
   		.notNullable()
 
   	tbl
-  		.integer('session_id')
+  		.string('session_id')
       .unsigned()
       .notNullable()
   		.references('id')

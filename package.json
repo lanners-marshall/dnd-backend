@@ -7,7 +7,7 @@
     "test": "(knex migrate:rollback && knex migrate:latest && knex seed:run) && NODE_ENV=test jest --verbose --watch",
     "start": "NODE_ENV=production node server.js",
     "startd": "NODE_ENV=development node server.js",
-    "re": "knex migrate:rollback && knex migrate:latest && knex seed:run",
+    "re": "knex migrate:rollback && knex migrate:latest && knex seed:run && yarn startd",
     "he": "heroku run knex migrate:rollback && heroku run knex migrate:latest && heroku run knex seed:run"
   },
   "keywords": [],
