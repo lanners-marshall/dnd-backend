@@ -38,7 +38,7 @@ router.post('/register', (req, res) => {
 				.first()
 				.then(user => {
 					const token = generateToken(user);
-					return res.status(200).json({token, id: user.id})
+					return res.status(200).json({token, id: user.id, name: user.name})
 				})
 				.catch(err => {
 					console.log(err)
@@ -62,7 +62,7 @@ router.post('/login', (req, res) => {
 			if (user && bcrypt.compareSync(creds.password, user.password)) {
 				//console.log(user)
 				const token = generateToken(user);
-				res.status(200).json({token, id: user.id})
+				res.status(200).json({token, id: user.id, name: user.name})
 			} else {
 				res.status(401).json({msg: 'You have failed to log in'})
 			} 
