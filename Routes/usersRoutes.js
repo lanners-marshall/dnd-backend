@@ -7,10 +7,8 @@ require('custom-env').env('staging')
 const secret = process.env.DB_PASS
 const jwt_id = process.env.DB_HOST
 const environment = process.env.NODE_ENV || 'development'
-
 const dbConfig = require('../knexfile.js')[environment]
 const db = knex(dbConfig)
-
 const protects = require('./middleWear.js');
 
 function generateToken(user){
@@ -23,7 +21,6 @@ function generateToken(user){
 	}
 	return jwt.sign(payload, secret, options)
 }
-
 
 // -----Create-----
 // create a new user
@@ -80,13 +77,10 @@ router.get('/:id', protects, (req, res) => {
 			if (response.length == 0){
 				return res.status(404).json({msg: 'no sessions found'})
 			}
-
 			let ar = []
-
 			for (let i in response){
 				ar.push({session_name: response[i].session_name, session_id: response[i].id})
 			}
-
 			return res.status(200).json({sessions: ar, by_user: response[0].username, email: response[0].email})
 		})
 		.catch(error => {
@@ -94,19 +88,15 @@ router.get('/:id', protects, (req, res) => {
 		})
 })
 
-
-
 // -----Update-----
 //update a users name/email
 router.put('/:id', (req, res) => {
 	const { id } = req.params;
 	const { username, email  } = req.body;
-
 	//make sure form is filled out
 	if(!req.body.username || !req.body.email){
 		return res.status(400).json({msg: 'please provide information'})
 	}
-
 	db('users')
 	.where({id})
 	.update({username, email })
