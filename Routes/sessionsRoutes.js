@@ -21,7 +21,7 @@ router.post('', (req, res) => {
 
 	db.insert({session_name, user_id}).into('sessions')
 		.then(response => {
-			return res.status(201).json({msg: 'session created'})
+			return res.status(201).json(response)
 		})
 		.catch(error => {
 			res.status(500).json(error)
