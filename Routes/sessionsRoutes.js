@@ -81,7 +81,7 @@ router.put('/:id', (req, res) => {
 // -----Delete-----
 //delete a users session and all related encounters
 router.delete('/:id', (req, res) => {
-	const { id } = req.params
+	const { id } = req.body;
 	db('sessions')
 	.where({id})
 	.del()
