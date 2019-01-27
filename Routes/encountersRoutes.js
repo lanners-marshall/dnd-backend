@@ -18,7 +18,7 @@ router.post('/:id', (req, res) => {
 	console.log(req.body)
 	return
 	console.log(id)
-	console.log(req.body)
+	console.log(req.body.monsters)
 	if (!req.body.encounter_name){
 		return res.status(400).json({msg: 'please provide encounter name'})
 	}
