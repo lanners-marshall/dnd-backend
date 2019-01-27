@@ -15,12 +15,13 @@ const protects = require('./middleWear.js');
 router.post('/:id', (req, res) => {
 	const {encounter_name, monsters} = req.body
 	const {id} = req.params;
-	let mons = req.body.monsters.toString();
+	let m1 = JSON.stringify(req.body.monsters)
+	let m2 = m1.toString()
 	if (!req.body.encounter_name){
 		return res.status(400).json({msg: 'please provide encounter name'})
 	}
 
-	db.insert({encounter_name, session_id: id, monsters: mons }).into('encounters')
+	db.insert({encounter_name, session_id: id, monsters: m2 }).into('encounters')
 		.then(response => {
 			console.log(JSON.parse(response))
 			return res.status(201).json({msg: 'encounter created'})
