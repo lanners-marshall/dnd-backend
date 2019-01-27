@@ -15,10 +15,8 @@ const protects = require('./middleWear.js');
 router.post('/:id', (req, res) => {
 	const {encounter_name, monsters} = req.body
 	const {id} = req.params;
-	console.log(req.body)
-	return
-	console.log(id)
 	console.log(req.body.monsters)
+	return
 	if (!req.body.encounter_name){
 		return res.status(400).json({msg: 'please provide encounter name'})
 	}
