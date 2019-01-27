@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
       .onDelete('CASCADE')
 
     tbl
-      .json('monsters')
+      .string('monsters')
       .notNullable()
 
   })
