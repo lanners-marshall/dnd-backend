@@ -21,7 +21,17 @@ router.post('', (req, res) => {
 
 	db.insert({session_name, user_id}).into('sessions')
 		.then(response => {
-			return res.status(201).json(response)
+			const id = response.data.user_id
+			db('users')
+			.join('sessions', 'sessions.user_id', '=', 'users.id')
+			.where({user_id: id})
+			.then(response => {
+				let ar = []
+				for (let i in response){
+					ar.push({session_name: response[i].session_name, session_id: response[i].id})
+				}
+				return res.status(200).json({sessions: ar, by_user: response[0].username, email: response[0].email})
+			})
 		})
 		.catch(error => {
 			res.status(500).json(error)
