@@ -13,13 +13,22 @@ const protects = require('./middleWear.js');
 // -----Create-----
 //create a new encounter for the session
 router.post('/:id', (req, res) => {
-	const {encounter_name, monsters} = req.body
+	const {encounter_name, keys, values} = req.body
 	const {id} = req.params;
 	if (!req.body.encounter_name){
 		return res.status(400).json({msg: 'please provide encounter name'})
 	}
 
-	db.insert({encounter_name, session_id: id, monsters }).into('encounters')
+	let keys = '{"' + req.body.keys.join('","') + '"}'
+	let values = '{"' + req.body.values.join('","') + '"}'
+
+	let encounter = {encounter_name, keys, values}
+
+// let encounter = {"encounter_name": "test encounter", "keys": ["test key 1", "test key 2", "test key 3"], "values": ["test value 1", "test value 2", "test value 3"] }
+// let keys = '{"' + encounter.keys.join('","') + '"}'
+// let values = '{"' + encounter.values.join('","') + '"}'
+
+	db.insert(encounter).into('encounters')
 		.then(response => {
 			console.log(JSON.parse(response))
 			return res.status(201).json({msg: 'encounter created'})
