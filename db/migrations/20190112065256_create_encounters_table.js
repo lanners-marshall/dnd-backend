@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
       .onDelete('CASCADE')
 
     tbl
-      .specificType('monsters', 'object ARRAY')
+      .specificType('monsters', 'ARRAY')
 
   })
 };
