@@ -22,7 +22,9 @@ router.post('/:id', (req, res) => {
 	let keys = '{"' + req.body.k.join('","') + '"}'
 	let values = '{"' + req.body.v.join('","') + '"}'
 
-	let encounter = {encounter_name, keys, values}
+	let encounter = {encounter_name, session_id: id, keys, values, }
+	console.log(encounter)
+	return 
 
 // let encounter = {"encounter_name": "test encounter", "keys": ["test key 1", "test key 2", "test key 3"], "values": ["test value 1", "test value 2", "test value 3"] }
 // let keys = '{"' + encounter.keys.join('","') + '"}'
