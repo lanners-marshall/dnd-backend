@@ -45,8 +45,6 @@ router.get('/:id', (req, res) => {
 		let keys_ar = response[0].keys
 		let values_ar = response[0].values
 		let str, num, counter
-		let keys_ar = [];
-		let values_ar = [];
 		let boolv = false
 		let boolv2 = false
 
