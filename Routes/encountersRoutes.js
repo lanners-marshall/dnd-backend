@@ -24,13 +24,8 @@ router.post('/:id', (req, res) => {
 
 	let encounter = {encounter_name, session_id: id, keys, values, }
 
-// let encounter = {"encounter_name": "test encounter", "keys": ["test key 1", "test key 2", "test key 3"], "values": ["test value 1", "test value 2", "test value 3"] }
-// let keys = '{"' + encounter.keys.join('","') + '"}'
-// let values = '{"' + encounter.values.join('","') + '"}'
-
 	db.insert(encounter).into('encounters')
 		.then(response => {
-			// console.log(JSON.parse(response))
 			return res.status(201).json({msg: 'encounter created'})
 		})
 		.catch(error => {
@@ -46,7 +41,80 @@ router.get('/:id', (req, res) => {
 	db('encounters')
 	.where({id})
 	.then(response => {
-		res.status(200).json(response)
+
+		let keys = response[0].keys
+		let values = response[0].values
+		let str, num, counter
+		let keys_ar = [];
+		let values_ar = [];
+		let boolv = false
+		let boolv2 = false
+
+		for (let q = 0; q < keys.length; q++ ){
+		  if (keys[q] == '"'){
+		    str = ''
+		    num = q + 1
+		    counter = 0
+		    while(keys[num] !== '"'){
+		      if (keys[num] == "}"){
+		        boolv = true
+		        break;
+		      }
+		      str += keys[num]
+		      num = num + 1;
+		      counter = counter + 1;
+		    }
+		    if (boolv === true){
+		      break;
+		    }
+		    if (str !== ','){
+		      keys_ar.push(str);
+		    }
+		    q += counter
+		  }
+		}
+
+		for (let x = 0; x < values.length; x++ ){
+		  if (values[x] == '"'){
+		    str = ''
+		    num = x + 1
+		    counter = 0
+		    while(values[num] !== '"'){
+		      if (values[num] == "}"){
+		        boolv2 = true
+		        break;
+		      }
+		      str += values[num]
+		      num = num + 1;
+		      counter = counter + 1;
+		    }
+		    if (boolv2 === true){
+		      break;
+		    }
+		    if (str !== ','){
+		      values_ar.push(str);
+		    }
+		    x += counter
+		  }
+		}
+
+		let obj_ar = [];
+		let obj = {};
+
+		for (let n = 0; n < values_ar.length; n++){
+		  k = keys_ar[n]
+		  v = values_ar[n]
+		  if (k === 'name' && n !== 0){
+		    obj_ar.push(obj)
+		    obj = {}
+		  }
+		  obj[k]= v
+		  if (values_ar.length - 1 == n){
+		    obj_ar.push(obj)
+		    break
+		  }
+		}
+		return res.status(200).json(obj_ar);
 	})
 	.catch(error => {
 		console.log(error)
