@@ -114,7 +114,7 @@ router.get('/:id', (req, res) => {
 		    break
 		  }
 		}
-		return res.status(200).json(obj_ar);
+		return res.status(200).send(obj_ar);
 	})
 	.catch(error => {
 		console.log(error)
