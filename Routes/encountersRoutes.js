@@ -45,12 +45,9 @@ router.get('/:id', (req, res) => {
 		let keys_ar = response[0].keys
 		let values_ar = response[0].values
 		let str, num, counter
-		let boolv = false
-		let boolv2 = false
-
 		let obj_ar = [];
 		let obj = {};
-
+		
 		for (let n = 0; n < values_ar.length; n++){
 		  k = keys_ar[n]
 		  v = values_ar[n]
