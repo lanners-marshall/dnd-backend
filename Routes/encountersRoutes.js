@@ -42,64 +42,13 @@ router.get('/:id', (req, res) => {
 	.where({id})
 	.then(response => {
 
-		let keys = response[0].keys
-		let values = response[0].values
-		console.log(response)
-		console.log(keys)
-		console.log(values)
+		let keys_ar = response[0].keys
+		let values_ar = response[0].values
 		let str, num, counter
 		let keys_ar = [];
 		let values_ar = [];
 		let boolv = false
 		let boolv2 = false
-
-		for (let q = 0; q < keys.length; q++ ){
-		  if (keys[q] == '"'){
-		    str = ''
-		    num = q + 1
-		    counter = 0
-		    while(keys[num] !== '"'){
-		      if (keys[num] == "}"){
-		        boolv = true
-		        break;
-		      }
-		      str += keys[num]
-		      num = num + 1;
-		      counter = counter + 1;
-		    }
-		    if (boolv === true){
-		      break;
-		    }
-		    if (str !== ','){
-		      keys_ar.push(str);
-		    }
-		    q += counter
-		  }
-		}
-
-		for (let x = 0; x < values.length; x++ ){
-		  if (values[x] == '"'){
-		    str = ''
-		    num = x + 1
-		    counter = 0
-		    while(values[num] !== '"'){
-		      if (values[num] == "}"){
-		        boolv2 = true
-		        break;
-		      }
-		      str += values[num]
-		      num = num + 1;
-		      counter = counter + 1;
-		    }
-		    if (boolv2 === true){
-		      break;
-		    }
-		    if (str !== ','){
-		      values_ar.push(str);
-		    }
-		    x += counter
-		  }
-		}
 
 		let obj_ar = [];
 		let obj = {};
