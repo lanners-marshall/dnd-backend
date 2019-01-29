@@ -44,6 +44,9 @@ router.get('/:id', (req, res) => {
 
 		let keys = response[0].keys
 		let values = response[0].values
+		console.log(response)
+		console.log(keys)
+		console.log(values)
 		let str, num, counter
 		let keys_ar = [];
 		let values_ar = [];
@@ -114,7 +117,7 @@ router.get('/:id', (req, res) => {
 		    break
 		  }
 		}
-		return res.status(200).send(obj_ar);
+		return res.status(200).json(obj_ar);
 	})
 	.catch(error => {
 		console.log(error)
