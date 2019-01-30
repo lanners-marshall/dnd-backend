@@ -48,7 +48,7 @@ router.get('/:id', protects, (req, res) => {
 				ar.push({encounter_name: response[i].encounter_name, monsters: response[i].monsters, session_id: response[i].session_id, id: response[i].id})
 			}
 
-			return res.status(200).json({session_encounters: ar})
+			return res.status(200).json(ar)
 		})
 		.catch(error => {
 			res.status(500).json({msg: 'there was an error getting sessions'})
