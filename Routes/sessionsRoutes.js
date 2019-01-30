@@ -45,7 +45,7 @@ router.get('/:id', protects, (req, res) => {
 			let ar = []
 			//I am finding all the encounters for a session
 			for (let i in response){
-				ar.push({encounter_name: response[i].encounter_name, monsters: response[i].monsters, session_id: response[i].session_id})
+				ar.push({encounter_name: response[i].encounter_name, monsters: response[i].monsters, session_id: response[i].session_id, id: response[i].id})
 			}
 
 			return res.status(200).json({session_encounters: ar})
