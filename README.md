@@ -16,8 +16,6 @@ The website is deployed live on Firebase.com.
 ## Technologies Used
 
 * Node
-* HTML
-* CSS
 
 ## License
 
